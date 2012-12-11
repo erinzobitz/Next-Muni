@@ -11,11 +11,12 @@ get '/' do
 	erb :index
 end
 
-post '/location' do 
-	@location = params[:location]
-	coordinates = Geocoder.search(@location)
-	@my_location = [coordinates[0].latitude, coordinates[0].longitude]
+post '/address' do 
+	@address = params[:address]
+	coordinates = Geocoder.search(@address)
+	@my_address = [coordinates[0].latitude, coordinates[0].longitude]
 	
+	erb :result
 end
 
 

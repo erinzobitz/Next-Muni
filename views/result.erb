@@ -1,6 +1,6 @@
 
 
-<div class="hero-unit">
-	<p> Your located at </p> <h1><%= @my_address %> </h1>
+<div>
+  <img src= <%= "http://maps.googleapis.com/maps/api/staticmap?&zoom=16&size=512x512&maptype=roadmap&sensor=false&markers=color:blue%7Clabel:%7C#{@latitude},#{@longitude}" %> />
+  
 </div>
-

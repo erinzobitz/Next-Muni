@@ -1,7 +1,3 @@
-<div class="hero-unit">
-	<p> You're located at </p> <h1><%= @my_address %> </h1>
-</div>
-
 <!-- HTML -->
 	
 	<!-- The following is the javascript portion which sets up the Google maps API with our own API key. -->
@@ -11,6 +7,8 @@
 
 	<script type="text/javascript">
 		function initialize() {
+			var myLatlng = new google.maps.LatLng(<%= @my_address[0] %>, <%= @my_address[1] %>);
+
 			var mapOptions = {
 				center: new google.maps.LatLng(<%= @my_address[0] %>, <%= @my_address[1] %>),
 				zoom: 15,
@@ -19,12 +17,20 @@
 		
 			var map = new google.maps.Map(document.getElementById("map_canvas"),
 				mapOptions);
+
+			var marker = new google.maps.Marker({
+      			position: myLatlng,
+      			map: map,
+      			title:"Hello World!"
+  			});
+  			var transitLayer = new google.maps.TransitLayer();
+				transitLayer.setMap(map);
 		}
 	</script>
 
 	<!-- back to HTML -->
 
 	<body onload="initialize()">
-		<div id="map_canvas" style="width:100%; height:100%"></div> <!-- the map_canvas is the div id we give to the map --> 
+		<div id="map_canvas" style="width:75%; height:75%"></div> <!-- the map_canvas is the div id we give to the map --> 
 	</body>
 

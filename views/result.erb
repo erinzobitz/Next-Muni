@@ -1,6 +1,30 @@
-
-
 <div class="hero-unit">
 	<p> You're located at </p> <h1><%= @my_address %> </h1>
 </div>
+
+<!-- HTML -->
+	
+	<!-- The following is the javascript portion which sets up the Google maps API with our own API key. -->
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFUbQCK-4qpiVcMhHesD6QwYmVbWecvOA&sensor=false">
+	</script> <!-- From the Google Maps API code sample -->
+
+	<script type="text/javascript">
+		function initialize() {
+			var mapOptions = {
+				center: new google.maps.LatLng(<%= @my_address[0] %>, <%= @my_address[1] %>),
+				zoom: 15,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+		
+			var map = new google.maps.Map(document.getElementById("map_canvas"),
+				mapOptions);
+		}
+	</script>
+
+	<!-- back to HTML -->
+
+	<body onload="initialize()">
+		<div id="map_canvas" style="width:100%; height:100%"></div> <!-- the map_canvas is the div id we give to the map --> 
+	</body>
 

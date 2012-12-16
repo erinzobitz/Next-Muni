@@ -21,10 +21,24 @@
 			var marker = new google.maps.Marker({
       			position: myLatlng,
       			map: map,
-      			title:"Hello World!"
+      			title:"My address!"
   			});
+
   			var transitLayer = new google.maps.TransitLayer();
 				transitLayer.setMap(map);
+
+  			
+  			
+  				<% @near_busses.each do |bus| %>
+  					var bus_latlong = new google.maps.LatLng(<%= bus.fetch("lat") %>, <%= bus.fetch("lon") %>);
+  					var bus_marker = new google.maps.Marker({
+      					position: bus_latlong,
+      					map: map,
+      					title: "<%= bus.fetch("routeTag") %>"
+  					});
+				
+				<% end %>
+
 		}
 	</script>
 
